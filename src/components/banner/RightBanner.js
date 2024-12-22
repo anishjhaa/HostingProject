@@ -17,12 +17,14 @@
 // export default RightBanner;
 import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
-import avatarImage from "../../assets/images/avatar.jpg"; // High-res image
+import avatarImage from "../../assets/images/avatar.jpg"; // Ensure this path is correct and the image is used
 
 const RightBanner = () => {
   const bannerRef = useRef(null);
 
   useEffect(() => {
+    if (!bannerRef.current) return; // Ensure the ref is available
+
     // Set up scene, camera, and renderer
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
@@ -74,7 +76,7 @@ const RightBanner = () => {
       renderer.dispose();
       bannerRef.current.removeChild(renderer.domElement);
     };
-  }, []);
+  }, []); // Empty dependency array ensures this runs once after the first render
 
   return (
     <div
