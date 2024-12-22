@@ -11,7 +11,11 @@ import { SiTailwindcss, SiFigma, SiNextdotjs } from "react-icons/si";
 
 const LeftBanner = () => {
   const [text] = useTypewriter({
-    words: ["Professional Coder.", "Full Stack Developer.", "UI Designer."],
+    words: [
+      "Professional Coder.",
+      "Full Stack Developer.",
+      "Wordpress Developer.",
+    ],
     loop: true,
     typeSpeed: 20,
     deleteSpeed: 10,
@@ -22,7 +26,8 @@ const LeftBanner = () => {
       <div className="flex flex-col gap-5">
         <h4 className=" text-lg font-normal">WELCOME TO MY WORLD</h4>
         <h1 className="text-6xl font-bold text-white">
-          Hi, I'm <span className="text-designColor capitalize">John doe</span>
+          Hi, I'm{" "}
+          <span className="text-designColor capitalize">Utsav Dhillon</span>
         </h1>
         <h2 className="text-4xl font-bold text-white">
           a <span>{text}</span>
@@ -33,9 +38,11 @@ const LeftBanner = () => {
           />
         </h2>
         <p className="text-base font-bodyFont leading-6 tracking-wide">
-          I use animation as a third dimension by which to simplify experiences
-          and kuiding thro each and every interaction. I'm not adding motion
-          just to spruce things up, but doing it in ways that.
+          I use technology as a third dimension to simplify experiences and
+          guide users through every interaction. I don't add motion just to make
+          things look fancy but to enhance usability and create meaningful
+          engagement. This reflects my love for technology and my passion for
+          crafting intuitive, interactive experiences.
         </p>
       </div>
       <div className="flex flex-col xl:flex-row gap-6 lgl:gap-0 justify-between">
@@ -49,17 +56,17 @@ const LeftBanner = () => {
                 <FaGithub />
               </span>
             </a>
-            <a href="https://github.com/noorjsdivs/portfolioone" target="blank">
+            {/* <a href="https://github.com/noorjsdivs/portfolioone" target="blank">
               <span className="bannerIcon">
                 <FaFacebookF />
               </span>
-            </a>
-            <a href="https://github.com/noorjsdivs/portfolioone" target="blank">
+            </a> */}
+            {/* <a href="https://github.com/noorjsdivs/portfolioone" target="blank">
               <span className="bannerIcon">
                 <FaTwitter />
               </span>
-            </a>
-            <a href="https://github.com/noorjsdivs/portfolioone" target="blank">
+            </a> */}
+            <a href="https://www.linkedin.com/in/utsav-dhillon/" target="blank">
               <span className="bannerIcon">
                 <FaLinkedinIn />
               </span>
