@@ -17,10 +17,11 @@
 // export default RightBanner;
 import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
-import avatarImage from "../../assets/images/avatar.jpg"; // Ensure this path is correct and the image is used
+import avatarImage from "../../assets/images/avatar.jpg"; // Ensure this path is correct
 
 const RightBanner = () => {
   const bannerRef = useRef(null);
+  const rendererRef = useRef(null); // Keep track of the renderer
 
   useEffect(() => {
     if (!bannerRef.current) return; // Ensure the ref is available
@@ -34,21 +35,22 @@ const RightBanner = () => {
       1000
     );
     const renderer = new THREE.WebGLRenderer({ alpha: true }); // Enable transparency
+    rendererRef.current = renderer; // Store renderer in ref
     renderer.setSize(
       bannerRef.current.clientWidth,
       bannerRef.current.clientHeight
     );
-    renderer.setPixelRatio(window.devicePixelRatio); // Ensure high pixel ratio for sharper render
-    renderer.setClearColor(0x000000, 0); // Set background to transparent
+    renderer.setPixelRatio(window.devicePixelRatio); // Sharpen render
+    renderer.setClearColor(0x000000, 0); // Transparent background
     bannerRef.current.appendChild(renderer.domElement);
 
     // Create a cube with avatar texture
     const avatarTexture = new THREE.TextureLoader().load(
       avatarImage,
       (texture) => {
-        texture.minFilter = THREE.NearestFilter; // Sharpen textures during scaling
-        texture.magFilter = THREE.NearestFilter; // Sharpen textures during magnification
-        texture.anisotropy = renderer.capabilities.getMaxAnisotropy(); // Maximize sharpness
+        texture.minFilter = THREE.NearestFilter;
+        texture.magFilter = THREE.NearestFilter;
+        texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
       }
     );
 
@@ -63,6 +65,7 @@ const RightBanner = () => {
 
     // Animation loop
     const animate = () => {
+      if (!renderer || !bannerRef.current) return; // Ensure renderer and ref are available
       requestAnimationFrame(animate);
       avatar.rotation.x += 0.01;
       avatar.rotation.y += 0.01;
@@ -73,10 +76,14 @@ const RightBanner = () => {
 
     // Cleanup on component unmount
     return () => {
-      renderer.dispose();
-      bannerRef.current.removeChild(renderer.domElement);
+      if (rendererRef.current) {
+        rendererRef.current.dispose();
+        if (bannerRef.current) {
+          bannerRef.current.removeChild(rendererRef.current.domElement);
+        }
+      }
     };
-  }, []); // Empty dependency array ensures this runs once after the first render
+  }, []); // Empty dependency array ensures this runs only once
 
   return (
     <div
