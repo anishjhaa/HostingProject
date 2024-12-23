@@ -17,7 +17,7 @@
 // export default RightBanner;
 import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
-import avatarImage from "../../assets/images/avatar.jpg"; // Ensure this path is correct
+import avatarImage from "../../assets/images/bannerImg.jpg"; // Ensure this path is correct
 
 const RightBanner = () => {
   const bannerRef = useRef(null);
